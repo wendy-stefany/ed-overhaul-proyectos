@@ -1,7 +1,7 @@
 <?php
     include '../../conexion.php';
     $conexion = conectarBD();
-
+    $num=$_GET['n_proyecto'];
     $CampoMaterial      = $_POST['Material'];
     $CampoCosto         = $_POST['Costo'];
     $CampoConcepto      = $_POST['Concepto'];
@@ -16,6 +16,6 @@
     pg_query($conexion,$query);
 
 
-    header('Location: nuevo_proyecto_material.php');
+    header("Location: nuevo_proyecto_material.php?n_proyecto=$num");
     exit;
 ?>

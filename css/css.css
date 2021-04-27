@@ -1,4 +1,9 @@
   /*Login*/
+  #header{
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
   body {
     margin: 0;
     padding: 0;
@@ -116,18 +121,6 @@
   .login-box a:hover {
     color: #fff;
   }
-
-
-
-
-
-/**/
-#header{
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-}
-
 h1 {
 	text-align: center;
 	padding: 12px;
@@ -141,7 +134,7 @@ a{
 	font-family:Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 16px;
-  color: #FFFFFF;
+  color: #9B9B9B;
   text-decoration: none;
 }
 a:hover {
@@ -276,6 +269,24 @@ b{
   left: 304px;
 
 }
+.img_colaboradores{
+  position: absolute;
+  width: 39px;
+  height: 33px;
+  left: 304px;
+  top:10px;
+}
+.colaboradores{
+  position: absolute;
+  width: 146px;
+  height: 16px;
+  left: 550px;
+  top: 20px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
 .nuevo{
   position: absolute;
   width: 146px;
@@ -308,101 +319,37 @@ hr{
   transform: rotate(-0.09deg);
 }
 
-.estado{
-  position: absolute;
-  left: 145px;
-  top: 160px;
-  background: #21262D;
-  border-radius: 50px;
-
-}
-.estado a:hover {
-  background-color:#161B22;;
-  color: #003488;
-}
-/*menu estado*/
+/*menu estado proyecto*/
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #21262D;
-  }
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 800px;
+    height: 32px;
+    left: 150px;
+    top: 140px;
+}
 
 li {
-  float: left;
-
+    float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    display: block;
+    color: #9B9B9B;
+    text-align: center;
+    padding: 0px 36px;
+    text-decoration: none;
+}
+li a.active {
+    color: white;
+    border-bottom: 3px solid #003488;
 }
 
-li a:hover {
-  background-color: #111;
-}
-/*informacion de proyecto*/
-.informacion{
-  position: absolute;
-  width: 1000px;
-  left: 100px;
-  top: 120px;
-  text-align: left;
-  padding: 0px;
-}
-.informacion td{
-  font-size: 13px;
-  line-height: 14px;
-  color: #FFFFFF;
-  text-align: left;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  padding: 10px;
-  }
-.informacion tr{
-  font-family:Arial, Helvetica, sans-serif;
-  text-align: left;
-}
-
-.informacion td:hover {
-  background-color:#161B22;
-}
-.informacion td.etiqueta:hover {
-  background: #0D1117;
-}
-.informacion td.etiqueta{
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-}
-/*boton editar*/
-
-.img_editar{
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 930px;
-  top: 10px;
-}
-.text-editar{
-  position: absolute;
-  width: 146px;
-  height: 16px;
-  left: 950px;
-  top: 25px;
-  font-size: 14px;
-  line-height: 16px;
-  color: #FFFFFF;
-  text-decoration: none;top: 10px;
-}
-.text-editar a:hover {
-
-  color: #003488;
-}
 /*nuevo proyecto*/
 .formulario{
   position: absolute;
@@ -411,47 +358,50 @@ li a:hover {
   top: 120px;
   left: 150px;
   text-align: left;
+
 }
 .formulario textarea{
-  position: absolute;
-  width: 900px;
-  height: 100px;
-  max-width: 1200px;
-  background-color: #E7E7E7;
+  width: 540px;
+  height: 200px;
+  background: #0D1117;
+  border: 0.3px solid #969292;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color:white;
+   resize: none;
 }
 .formulario button{
   position: absolute;
-  width: 100px;
-  height: 30px;
-  left: 900px;
-  top: 400px;
-  border: none;
+  left: 440px;
+  top: 370px;
   outline: none;
-  background: #003488;;
+  border: none;
+  background: #003488;
   color: white;
   font-size: 14px;
-  border-radius: 20px;
-}
-.formulario input[type="submit"] {
-  position: absolute;
-  width: 90px;
-  height: 30px;
-  left: 800px;
-  top: 400px;
-  border: none;
-  outline: none;
-  background: #003488;;
-  color: white;
-  font-size: 14px;
-  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
 }
 
-.formulario input[type="submit"]:hover {
+
+.formulario input[type="submit"]{
+  outline: none;
+  border: none;
+  background: #003488;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  text-align: center;
   cursor: pointer;
-  background: white;
-  color: #003488;;
+  left:40px;
 }
-.formulario input[type="text"], .formulario input[type="tel"], form input[type="text"]{
+.formulario input[type="submit"]:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,1), 0 17px 50px 0 rgba(0,0,0,0.4);
+}
+
+
+.formulario input[type="text"], .formulario input[type="tel"], .formulario input[type="date"], .formulario select{
   background: #0D1117;
   border: 0.3px solid #969292;
   box-sizing: border-box;
@@ -466,12 +416,7 @@ li a:hover {
   box-sizing: border-box;
   border-radius: 6px;
 }
-.formulario input[type="date"] .formulario select{
-  background: white;
-  border: 0.3px solid #969292;
-  box-sizing: border-box;
-  border-radius: 6px;
-}
+
 
 .formulario h2, .informacion td.seccion{
   font-family:Arial, Helvetica, sans-serif;
@@ -485,31 +430,107 @@ li a:hover {
   color: white;
 }
 
-/*Comentarios*/
-p.c_p{
-  position: absolute;
-  left: 152px;
-  top: 166px;
+
+/*form-Editar*/
+
+.formulario_editar{
+  text-align: right;
+
+}
+.formulario_editar textarea{
+  width: 540px;
+  height: 200px;
+  background: #0D1117;
+  border: 0.3px solid #969292;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color:white;
+   resize: none;
+}
+.formulario_editar button{
+  outline: none;
+  border: none;
+  background: #003488;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.formulario_editar input[type="submit"]{
+  outline: none;
+  border: none;
+  background: #003488;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  margin:0 auto;
+}
+.formulario_editar input[type="submit"]:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,1), 0 17px 50px 0 rgba(0,0,0,0.4);
+}
+
+
+.formulario_editar input[type="text"], .formulario_editar input[type="tel"], .formulario_editar input[type="date"], .formulario_editar select, .formulario_editar input[type="password"]{
+  background: #0D1117;
+  border: 0.3px solid #969292;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color:white;
+  width: 200px;
+}
+.formulario_editar input[type="num"]{
+  width: 200px;
+  background: #0D1117;
+  border: 0.3px solid #969292;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+
+.formulario_editar h2, .informacion_editar td.seccion{
   font-family:Arial, Helvetica, sans-serif;
   font-size: 20px;
-  text-align: left;
   color: white;
-  background-color:#0D1117;
+  text-align: center;
+}
+.formulario_editar label {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 14px;
+  color: white;
+}
+.editar{
+    width: 300px;
+    text-align: right;
+    margin:0 auto;
+
+
 }
 /*tabla proyectos y comentarios*/
-.table-style{
+.class-table-style{
   position: absolute;
-  width: 900px;
-  left: 150px;
-  top: 217px;
+  border: 0.3px solid #969292;
+  width: 1063px;
+  left: 142px;
+  top: 170px;
+  border-radius: 6px;
+  text-align: center;
+}
+.table-style{
+  width: 1063px;
+  color: #9B9B9B;
   border-collapse: collapse;
-  background: #0D1117;
-  color:white;
 }
 .table-style td {
   text-align: center;
   font-family:Arial, Helvetica, sans-serif;
   font-size: 14px;
+  border-collapse: collapse;
 }
 
 .table-style tr:hover {
@@ -519,7 +540,7 @@ p.c_p{
 .table-style th , .table-style td  {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #969292;
 }
 
 .advertencia{
@@ -529,29 +550,32 @@ p.c_p{
   color:white;
   text-align: center;
   align: center;
-  position: absolute;
-  left: 581px;
-  top: 250px;
-}
-b.advertencia{
-  top:450px;
+  background-color: #0D1117;
+
 }
 
-
-/*NuevoComentario*/
+/*Comentarios*/
+p.c_p{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-align: right;
+  width: 270px;
+  height: 20px;
+  color: #9B9B9B;
+  background-color:#0D1117;
+}
+/*nuevo comentario*/
 .nuevo_comentario{
   position: absolute;
-  width: 114px;
-  height: 32px;
-  left: 940px;
-  top: 170px;
+  width: 105px;
+  height: 36px;
+  left: 1108px;
+  top: 130px;
 }
-.nuevo_comentario_img{
-  position: absolute;
+
+.nuevo_comentario img{
   width: 32px;
   height: 32px;
-  left: 950px;
-  top: 158px;
 }
 .overlay {
   position: fixed;
@@ -600,14 +624,23 @@ b.advertencia{
 	border-left: 4px solid #3366FF;
   resize: none;
   color:white;
-
 }
+#popupBody input[type="text"]{
+  width: 430px;
+  height: 20px;
+  background-color: #161B22;
+	border:1px solid #3366FF;
+	border-left: 4px solid #3366FF;
+  resize: none;
+  color:white;
+}
+
 #popupBody button{
   border: none;
   background: #003488;
   color: white;
   font-size: 14px;
-  padding: 15px 32px;
+  padding: 10px 27px;
   text-align: center;
   cursor: pointer;
 }
@@ -618,4 +651,120 @@ box-shadow: 0 12px 16px 0 rgba(0,0,0,1), 0 17px 50px 0 rgba(0,0,0,0.4);
   width: 60px;
   height: 60px;
 
+}
+.editar_colaborador{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 300px;
+  top: 178px;
+  text-align: center;
+}
+.editar_usuario{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 650px;
+  top: 178px;
+  text-align: center;
+}
+.informacion_proyecto2{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 150px;
+  top: 178px;
+  text-align: center;
+}
+.informacion_proyecto3{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 530px;
+  top: 178px;
+  text-align: center;
+}
+.informacion_proyecto4{
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  left: 900px;
+  top: 178px;
+  text-align: center;
+
+}
+.informacion_proyecto5{
+  position: absolute;
+  width: 1054px;
+
+  left: 150px;
+  top: 578px;
+  text-align: center;
+}
+
+
+/*informacion de proyecto*/
+.informacion{
+  text-align: center;
+  padding: 0px;
+
+}
+.informacion td{
+  font-size: 13px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  }
+.informacion tr{
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.informacion td.etiqueta, td.etiqueta{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-align: right;
+}
+.informacion td.seccion{
+  font-size: 13px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  }
+
+
+/*boton editar*/
+
+.img_editar{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 930px;
+  top: 10px;
+}
+.text-editar{
+  position: absolute;
+  width: 146px;
+  height: 20px;
+  left: 950px;
+  top: 10px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  background: #0D1117;
+  border:0;
+  cursor: pointer;
+  text-align: left;
+}
+.text-editar:hover {
+  color: #003488;
 }

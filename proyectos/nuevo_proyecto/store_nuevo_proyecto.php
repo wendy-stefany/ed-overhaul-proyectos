@@ -68,6 +68,6 @@
     pg_query($conexion,$query);
 
 
-    header('Location: store_nuevo_proyecto_material.php');
+    header("Location: nuevo_proyecto_material.php?n_proyecto=$num");
     exit;
 ?>

@@ -52,18 +52,8 @@
 
                       echo"<td> $nombre_colaborador $apellido_colaborador </td>";
                       echo"<td>".$filas["num_comentario"]."</td>";
-                      $num_comentario=$filas["num_comentario"];
                       echo"<td>".$filas["fecha"]."</td>";
-                      echo"<td>".$filas["contenido"]."</td>";
-
-                      $usuario=$_SESSION['username'];
-                      $query3 ="select tipo from usuarios where usuario='$usuario';";
-                      $resultado3=pg_query($conexion,$query3) or die ("Error en la consulta");
-                      $filas3=pg_fetch_array($resultado3);
-                      $tipo=$filas3["tipo"];
-                      if ($tipo=='admin')  {
-                        echo"<td> <a href='../../eliminar/store_eliminar_comentario.php?n_proyecto=$n_proyecto&n_comentario= $num_comentario'><img src='../../css/img/eliminar.png'></a></td></tr>";
-                      }
+                      echo"<td>".$filas["contenido"]."</td></tr>";
                     }
             }
 

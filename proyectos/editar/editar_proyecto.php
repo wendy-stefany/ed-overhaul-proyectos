@@ -2,154 +2,105 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>ED-Informacion </title>
+    <title>Editar-proyecto</title>
     <link rel="stylesheet" href="../../css/css.css">
 
   </head>
   <body>
-    <?php
-    $n_proyecto=($_GET['n_proyecto']);
-    require_once ('..\..\conexion.php');
-    $conexion=conectarBD();
-    $query ="SELECT* from proyecto pro
-             join cliente as cli
-             on pro.num_proyecto = cli.num_proyecto
-             join cotizacion as cot
-             on cot.num_proyecto = pro.num_proyecto
-             where pro.num_proyecto='$n_proyecto'";
-    $resultado=pg_query($conexion,$query) or die ("Error en la consulta");//y esta linea es practicamente el query
-    $nr=pg_num_rows($resultado);
 
-    if($nr>0){
-            echo "<table class='informacion'>";
+      <div class="formulario_editar">
+        <div id="popup" class="overlay">
+              <div id="popupBody">
+                <img src='../../css/img/editar.png'>
+                  <h2>Editar</h2>
+                  <a id="cerrar" href='../../proyectos/mostrar/informacion_proyecto.php?n_proyecto=<?php $n_proyecto=($_GET['n_proyecto']);
+                  echo "$n_proyecto" ?>&opcion=informacion'>&times;</a>
+                  <div class="popupContent">
+                    <?php
+                    $n_proyecto=($_GET['n_proyecto']);
+                    session_start();
+                    $usuario=$_SESSION['username'];
 
-                  while ($filas=pg_fetch_array($resultado)) {
-                    echo"<tr>";
-                    echo"<td class='seccion'>Proyecto</td>";
-                    echo "</tr><tr>";
+                    require_once ('..\..\conexion.php');
+                    $conexion=conectarBD();
+                    $query ="SELECT* from proyecto pro
+                             join cliente as cli
+                             on pro.num_proyecto = cli.num_proyecto
+                             join cotizacion as cot
+                             on cot.num_proyecto = pro.num_proyecto
+                             where pro.num_proyecto='$n_proyecto'";
+                    $resultado=pg_query($conexion,$query) or die ("Error en la consulta");//y esta linea es practicamente el query
+                    $nr=pg_num_rows($resultado);
 
-                    echo"<td class='etiqueta'>#Proyecto</td>";
-                    echo"<td>".$filas["num_proyecto"]."</td>";
-                    echo "</tr><tr>";
-                    echo"<td class='etiqueta'>Levantamiento</td>";
-                    echo"<td>".$filas["fecha_lanzamiento"]."</td>";
-                    echo"<td class='etiqueta'>Inicio</td>";
-                    echo"<td>".$filas["fecha_inicio"]."</td>";
-                    echo"<td class='etiqueta'>Finalizacion</td>";
-                    echo"<td>".$filas["fecha_finalizacion"]."</td>";
-                    echo"<td class='etiqueta'>Rechazo</td>";
-                    echo"<td>".$filas["fecha_rechazo"]."</td>";
-                    echo "</tr><tr>";
+                    if($nr>0){
 
+                          echo "<form action='store_editar_proyecto.php?n_proyecto=$n_proyecto' method='post' class='editar'>";
 
-                    echo"<td class='etiqueta'>Estado</td>";
-                    echo"<td>".$filas["estado"]."</td>";
-                    echo"<td class='etiqueta'>#Captador</td>";
-                    echo"<td>".$filas["num_captador"]."</td>";
-                    echo"<td class='etiqueta'>#Supervisor</td>";
-                    echo"<td>".$filas["num_supervisor"]."</td>";
-                    echo "</tr><tr>";
+                                  while ($filas=pg_fetch_array($resultado)) {
+                                    $query2 ="select tipo,num_colaborador from usuarios where usuario='$usuario';";
+                                    $resultado2=pg_query($conexion,$query2) or die ("Error en la consulta");
+                                    $filas2=pg_fetch_array($resultado2);
+                                    $tipo=$filas2["tipo"];
 
-                    echo"<td class='seccion'>Cliente</td>";
-                    echo "</tr><tr>";
-                    echo"<td class='etiqueta'>#Tienda</td>";
-                    echo"<td>".$filas["num_tienda"]."</td>";
-                    echo"<td class='etiqueta'>Sucursal</td>";
-                    echo"<td>".$filas["nombre_sucursal"]."</td>";
-                    echo"<td class='etiqueta'>Razon social</td>";
-                    echo"<td>".$filas["razon_social"]."</td>";
-                    echo "</tr><tr>";
+                                    if ($tipo=='admin' or $tipo=='captador') {
 
-                    echo"<td class='etiqueta'>Nombre</td>";
-                    echo"<td>".$filas["nombre"]."</td>";
-                    echo"<td class='etiqueta'>Apellido</td>";
-                    echo"<td>".$filas["apellido"]."</td>";
-                    echo"<td class='etiqueta'>Telefono</td>";
-                    echo"<td class='etiqueta'>".$filas["telefono"]."</td>";
-                    echo "</tr><tr>";
+                                        $fecha_inicio=$filas["fecha_inicio"];
+                                        echo"<label>Inicio</label>&nbsp;&nbsp;";
+                                        echo"<input name='fecha_inicio' type='date' value='$fecha_inicio' >";
+                                        $fecha_finalizacion=$filas["fecha_finalizacion"];
+                                        echo"</br></br><label>Finalizacion</label>&nbsp;&nbsp;";
+                                        echo"<input name='fecha_finalizacion' type='date' value='$fecha_finalizacion' >";
+                                        $fecha_rechazo=$filas["fecha_rechazo"];
+                                        echo"</br></br><label>Rechazo</label>&nbsp;&nbsp;";
+                                        echo"<input name='fecha_rechazo' type='date' value='$fecha_rechazo' >";
 
-                    echo"<td class='seccion'>Cotizacion</td>";
-                    echo "</tr><tr>";
-                    echo"<td class='etiqueta'>#Cotizacion</td>";
-                    echo"<td>".$filas["num_cotizacion"]."</td>";
-                    $num_cotizacion=$filas["num_cotizacion"];
-                    echo "</tr><tr>";
-                    echo"<td class='etiqueta'>#Incidencia</td>";
-                    echo"<td>".$filas["num_incidencias"]."</td>";
-                    echo"<td class='etiqueta'>Tiempo de entrega</td>";
-                    echo"<td>".$filas["tiempo_entrega"]."</td></tr>";
+                                  }
 
-                  }
-    }
-    else {
-      echo "No hay resultados";
-    }
-    $costo=0;
-    $query ="SELECT *from material where num_cotizacion='$num_cotizacion';";//esta
-    $resultado=pg_query($conexion,$query) or die ("Error en la consulta");//y esta linea es practicamente el query
-    $nr=pg_num_rows($resultado);
-    if($nr>0){
-              echo"<td class='seccion'>Material</td>";
-              while ($filas=pg_fetch_array($resultado)) {
-                echo "</tr><tr>";
-                echo"<td class='etiqueta'>Cantidad</td>";
-                echo"<td>".$filas["cantidad_material"]."</td>";
-                $cant=$filas["cantidad_material"];
-                echo"<td class='etiqueta'>Cancepto</td>";
-                echo"<td>".$filas["concepto"]."</td>";
-                echo"<td class='etiqueta'>Costo</td>";
-                echo"<td>$".$filas["costo_unitario"]."</td>";
-                $cost=$filas["costo_unitario"];
-                $t  = $cost * $cant;
-                $costo=$costo+$t;
-                echo"<td class='etiqueta'>Costo total</td>";
-                echo"<td>$".$t."</td></tr>";
-              }
-                $iva=$costo *.16;
-                $total =$costo+$iva;
-                echo"<tr><td></td><td></td>";
-                echo"<td class='etiqueta'>Costo</td>";
-                echo"<td>$".$costo."</td>";
-                echo"<td class='etiqueta'>IVA</td>";
-                echo"<td>$".$iva."</td>";
-                echo"<td class='etiqueta'>Total</td>";
-                echo"<td>$".$total."</td></tr>";
-          }else {
+                                    $estado=$filas["estado"];
+                                    echo"</br></br><label>Estado</label>&nbsp;&nbsp;";
+                                    echo"<select name='estado'>
+                                       <option selected value='$estado'>$estado</option>
+                                       <option value='curso'>Curso</option>
+                                       <option value='terminado'>Terminado</option>
+                                       <option value='rechazado'>Rechazado</option>
+                                       <option value='espera'>Espera</option>
+                                    </select>";
+                                    if ($tipo=='admin' or $tipo=='captador') {
+                                          echo"</br></br><label>#Supervisor</label>&nbsp;&nbsp;";
+                                          $supervisor=$filas["num_supervisor"];
+                                          echo"<select name='num_supervisor'>";
+                                          $query2 ="SELECT* from usuarios where num_colaborador='$supervisor'";
+                                          $resultado2=pg_query($conexion,$query2) or die ("Error en la consulta");//y esta linea es practicamente el query
 
-        echo "No hay resultados "; }
+                                          while ($filas2=pg_fetch_array($resultado2)) {
+                                              $num_colaborador=$filas2['num_colaborador'];
+                                              $nombre=$filas2['usuario'];
+                                              echo "<option value='$num_colaborador'>$nombre</option>";}
 
-    $query ="SELECT colaborador_proyecto.num_proyecto, colaborador_proyecto.num_colaborador, colaboradores.nombre, colaboradores.apellido
-              FROM colaborador_proyecto, colaboradores WHERE colaborador_proyecto.num_colaborador = colaboradores.num_colaborador and
-              colaborador_proyecto.num_proyecto='$n_proyecto';";
-    $resultado=pg_query($conexion,$query) or die ("Error en la consulta");
-    $nr=pg_num_rows($resultado);
-    if($nr>0){
+                                          $query ="SELECT* from usuarios where tipo='supervisor'";
+                                          $resultado=pg_query($conexion,$query) or die ("Error en la consulta");//y esta linea es practicamente el query
+                                          $nr=pg_num_rows($resultado);
 
-              echo"<td class='seccion'>Colaboradores</td>";
-            while ($filas=pg_fetch_array($resultado)) {
-              echo "</tr><tr>";
-              echo"<td class='etiqueta'>#Colaborador</td>";
-              echo"<td>".$filas["num_colaborador"]."</td>";
-              echo"<td class='etiqueta'>Nombre</td>";
-              echo"<td>".$filas["nombre"]."</td>";
-              echo"<td class='etiqueta'>Apellido</td>";
-              echo"<td>".$filas["apellido"]."</td></tr>";
-            }
-            echo"</table>";
-    }else {
+                                          if($nr>0){
+                                              while ($filas=pg_fetch_array($resultado)) {
+                                                  $num_colaborador=$filas['num_colaborador'];
+                                                  $nombre=$filas['usuario'];
+                                                  echo "<option value='$num_colaborador'>$nombre</option>";
+                                                }
+                                              }
+                                            }
+                                          }
+                                          echo "</select>";
+                                          echo"</br></br><input type='submit' value='Guardar'>";
+                                  echo "</form>";
 
-    echo "No hay resultados"; }
+                            }
 
-    include("../../barra_busqueda_y_pie.php");
-    ?>
-    <div class="editar">
-      <div class="menu_editar">
-        <div class="dropdown">
-          <img src="../../css/img/editar.png" class="img_editar" >
-          <a href='../../proyectos/editar/editar_proyecto.php?n_proyecto= $n_proyecto' class='text-editar'>Editar</a>
+                    ?>
+                  </div>
+              </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-  </dody>
+          </dody>
   </html>

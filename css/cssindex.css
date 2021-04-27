@@ -1,0 +1,84 @@
+.login{
+  position: absolute;
+  width: 280px;
+  height: 435px;
+  left: 343px;
+  top: 100px;
+  font-family: sans-serif;
+  font-size: 14px;
+  text-align:left;
+  padding:20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+}
+.login-box{
+  position: absolute;
+  top: 130px;
+}
+.inicio{
+  width: 262px;
+  text-align:center;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+.logo{
+  position: absolute;
+  width: 288px;
+  height: 106px;
+  left: 0px;
+  top: 0px;
+}
+.login-box input[type="text"], input[type="password"], input[type="tel"]{
+  width: 262px;
+  height: 22px;
+  border:none;
+  border-bottom: 1px solid black;
+}
+.login-box input[type="submit"]{
+  width: 260px;
+  height: 22px;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color:#0AA7FF;
+  padding: 5px 0px;
+  color:white;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+.nueva{
+  position: absolute;
+  top: 380px;
+  width: 260px;
+  font-family: sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+.nueva a{
+  color:#0AA7FF;
+  cursor: pointer;
+}
+.img-inicio{
+  position: absolute;
+  width: 287px;
+  height: 432px;
+  left: 691px;
+  top: 83px;
+}
+.bad{
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    text-align:left;
+    width:auto;
+    color: #D8000C;
+    background-image: url('error.jpg');
+}

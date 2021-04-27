@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Encargado</title>
+    <title></title>
     <link rel="stylesheet" href="../../css/css.css">
   </head>
   <body class="encargado">
@@ -12,7 +12,7 @@
       <img src="../../css/img/triangulos.png" class="triangulos" >
         <form action="../../proyectos/mostrar/informacion_proyecto.php" method="get" class="barra_busqueda">
           <input type="text" placeholder="Buscar proyecto..." name="n_proyecto" required>
-          <input type="submit" value="/">
+
         </form>
 
     <div class="menu_proyectos">
@@ -34,6 +34,16 @@
           echo"<a href='../../proyectos/nuevo_proyecto/nuevo_proyecto.php' class='nuevo'>Nuevo proyecto</a>";
 
         }
+
+        $query3 ="select tipo from usuarios where usuario='$usuario';";
+        $resultado3=pg_query($conexion,$query3) or die ("Error en la consulta");
+        $filas3=pg_fetch_array($resultado3);
+        $tipo=$filas3["tipo"];
+
+        if ($tipo=='admin') {
+          echo"<img src='../../css/img/colaboradores.png' class='img_colaboradores' >";
+          echo"<a href='../../colaboradores/mostrar/colaboradores.php?tipo=supervisor' class='nuevo'>Colaboradores</a>";
+        }
           echo "<hr>";
         ?>
     </div>
@@ -47,9 +57,6 @@
 
 
   </header>
-
-        <div class="footer">hhhhhhhhh
-        </div>
 </body>
 
 
